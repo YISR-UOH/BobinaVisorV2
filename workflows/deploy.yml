@@ -19,7 +19,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      BASE_PATH: /${{ github.event.repository.name }}/
+      BASE_PATH: /BobinaVisorV2/
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
