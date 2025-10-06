@@ -74,10 +74,6 @@ function App() {
         onCSVFilesSelected={setCsvFiles}
       />
       <main className="flex-grow p-4">
-        <h2 className="text-xl font-semibold mb-4">
-          Welcome to Bobina Visor V2
-        </h2>
-        <p>This is a sample application using Vite, React, and Tailwind CSS.</p>
         {lastFile ? (
           <p className="mt-2 text-sm text-green-600">
             Último archivo cargado: {lastFile.relativePath}

@@ -26,19 +26,19 @@ import {
 
 const FILENAME_REGEX = /^(\d{4})(\d{2})(\d{2})-(\d{2})(\d{2})(\d{2})\.csv$/i;
 
-const DATE_FORMATTER = new Intl.DateTimeFormat("es-AR", {
+const DATE_FORMATTER = new Intl.DateTimeFormat("es-CL", {
   day: "2-digit",
   month: "short",
   year: "numeric",
 });
 
-const FULL_DATE_FORMATTER = new Intl.DateTimeFormat("es-AR", {
+const FULL_DATE_FORMATTER = new Intl.DateTimeFormat("es-CL", {
   day: "2-digit",
   month: "long",
   year: "numeric",
 });
 
-const MONTH_LABEL_FORMATTER = new Intl.DateTimeFormat("es-AR", {
+const MONTH_LABEL_FORMATTER = new Intl.DateTimeFormat("es-CL", {
   month: "long",
   year: "numeric",
 });
@@ -151,15 +151,15 @@ async function computeDailyMetrics(entry) {
 
 function HistoricoSkeleton() {
   return (
-    <div className="mt-6 grid animate-pulse gap-4 lg:grid-cols-4">
+    <div className="mt-6 grid animate-pulse gap-4 lg:grid-cols-1">
       <div className="lg:col-span-3 rounded-2xl border border-slate-200 bg-white/60 p-4 shadow-sm">
         <div className="h-72 rounded-xl bg-slate-200" />
       </div>
       <aside className="rounded-xl border border-slate-100 bg-slate-50/80 p-4 text-sm text-slate-600">
         <div className="h-5 w-2/3 rounded bg-slate-200" />
         <div className="mt-2 h-3 w-1/2 rounded bg-slate-100" />
-        <div className="mt-4 space-y-3">
-          {Array.from({ length: 3 }).map((_, index) => (
+        <div className="mt-6 grid gap-4 lg:grid-cols-4">
+          {Array.from({ length: 4 }).map((_, index) => (
             <div
               key={`historico-skeleton-${index}`}
               className="rounded-lg border border-slate-200 bg-white/70 p-3 shadow-sm"
@@ -374,7 +374,7 @@ export default function Historico({ files, maxDays = 0, onChangeMaxDays }) {
       )}
 
       {!loading && !error && !!chartData.length && (
-        <div className="mt-6 grid gap-4 lg:grid-cols-4">
+        <div className="mt-6 grid gap-4 lg:grid-cols-1">
           <div className="lg:col-span-3">
             <ResponsiveContainer width="100%" height={320}>
               <LineChart
@@ -391,7 +391,7 @@ export default function Historico({ files, maxDays = 0, onChangeMaxDays }) {
                   allowDecimals={false}
                 />
                 <Tooltip
-                  formatter={(value) => Number(value).toLocaleString("es-AR")}
+                  formatter={(value) => Number(value).toLocaleString("es-CL")}
                   labelFormatter={(label, payload) => {
                     const item = payload?.[0]?.payload;
                     return item?.fullDate ?? label;
@@ -429,7 +429,7 @@ export default function Historico({ files, maxDays = 0, onChangeMaxDays }) {
               {chartData.length}{" "}
               {chartData.length === 1 ? "día registrado" : "días registrados"}.
             </p>
-            <div className="mt-4 space-y-3">
+            <div className="mt-4 grid gap-4 lg:grid-cols-4">
               {monthlyStats.map((month) => {
                 const isExpanded = expandedMonths.get(month.key);
 
